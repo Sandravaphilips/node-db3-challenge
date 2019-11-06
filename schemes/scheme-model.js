@@ -25,11 +25,12 @@ function findSteps(id) {
 };
 
 function add(scheme) {
-    return db("schemes").insert(scheme);
+    return db("schemes").insert(scheme)
+        .then(([id]) => findById(id));
 };
 
 function update(changes, id) {
-  return db('users')
+  return db('schemes')
     .where({ id })
     .update(changes)
     .then(() => {
